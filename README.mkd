@@ -1,0 +1,24 @@
+Vim for Mustache
+================
+
+Mustache.vim is a syntax file extending on html.vim, it makes your mustache-embedded html code looks good, if not awesome.
+
+## Usage
+
+* Put `mustache.vim` into `~/.vim/syntax/`;
+* open `example.mustache` in your vim/gvim;
+* issue `:set syntax=mustache`, you go.
+
+You may like to put below in your `~/.vimrc`:
+
+    if has("autocmd")
+      au  BufNewFile,BufRead *.mustache set syntax=mustache
+    endif
+
+Then it will be activated every time you edit a `*.mustache` template.
+
+
+## TODO
+
+* Make mustache independent, so it could work for html, xml, plain txt, etc.
+* Do you get a good idea? Ping me at [twitter](http://twitter.com/juvenn).
