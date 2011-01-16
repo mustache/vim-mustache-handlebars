@@ -1,12 +1,14 @@
-" Vim syntax file
+" Mustache syntax
 " Language:	Mustache
 " Maintainer:	Juvenn Woo <machese@gmail.com>
 " Screenshot:   http://imgur.com/6F408
-" Version:	1
-" Last Change:  2009 Oct 15
+" Version:	2
+" Last Change:  Jan 16th 2011
 " Remark:       
 "   It lexically hilights embedded mustaches (exclusively) in html file. 
-"   While it was written for Ruby-based Mustache template system, it should work for Google's C-based *ctemplate* as well as Erlang-based *et*. All of them are, AFAIK, based on the idea of ctemplate.
+"   While it was written for Ruby-based Mustache template system, it should
+"   work for Google's C-based *ctemplate* as well as Erlang-based *et*. All
+"   of them are, AFAIK, based on the idea of ctemplate.
 " References:	
 "   [Mustache](http://github.com/defunkt/mustache)
 "   [ctemplate](http://code.google.com/p/google-ctemplate/)
