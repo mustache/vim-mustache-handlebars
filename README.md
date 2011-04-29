@@ -19,6 +19,7 @@ indent plugin.
     cp -R mustache.vim/syntax/* ~/.vim/syntax/
     cp -R mustache.vim/indent/* ~/.vim/indent/
     cp -R mustache.vim/ftdetect/* ~/.vim/ftdetect/
+    cp -R mustache.vim/ftplugin/* ~/.vim/ftplugin/
     vim mustache.vim/example.mustache
 
 ## Thanks
