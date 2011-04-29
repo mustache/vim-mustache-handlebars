@@ -21,6 +21,10 @@ indent plugin.
     cp -R mustache.vim/ftdetect/* ~/.vim/ftdetect/
     vim mustache.vim/example.mustache
 
-## TODO
+## Thanks
+
+* [Github/5long](/5long) add matchit support
+
+
 
 * Do you get a good idea? Ping me at [Twitter](http://twitter.com/juvenn).
