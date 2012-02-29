@@ -67,5 +67,9 @@ HtmlHiLink mustacheMarker Identifier
 HtmlHiLink mustacheError Error
 HtmlHiLink mustacheInsideError Error
 
+syn region mustacheScriptTemplate start=+<script [^>]*type *=[^>]*text/mustache[^>]*>+
+\                       end=+</script>+me=s-1 keepend
+\                       contains=mustacheError,mustacheInsideError,mustacheVariable,mustacheVariableUnescape,mustacheSection,mustachePartial,mustacheMarkerSet,mustacheComment,htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlTag,htmlEndTag,htmlTagName,htmlSpecialChar,htmlLink
+
 let b:current_syntax = "mustache"
 delcommand HtmlHiLink
