@@ -50,8 +50,7 @@ syntax region mustacheComment start=/{{!/ end=/}}/ contains=Todo containedin=htm
 
 " Clustering
 syntax cluster mustacheInside add=mustacheVariable,mustacheVariableUnescape,mustacheSection,mustachePartial,mustacheMarkerSet
-syntax cluster htmlMustacheContainer add=htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6
-
+syntax cluster htmlMustacheContainer add=htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlLink,htmlBold,htmlUnderline,htmlItalic
 
 " Hilighting
 " mustacheInside hilighted as Number, which is rarely used in html
@@ -69,7 +68,7 @@ HtmlHiLink mustacheInsideError Error
 
 syn region mustacheScriptTemplate start=+<script [^>]*type *=[^>]*text/mustache[^>]*>+
 \                       end=+</script>+me=s-1 keepend
-\                       contains=mustacheError,mustacheInsideError,mustacheVariable,mustacheVariableUnescape,mustacheSection,mustachePartial,mustacheMarkerSet,mustacheComment,htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlTag,htmlEndTag,htmlTagName,htmlSpecialChar,htmlLink
+\                       contains=mustacheError,mustacheInsideError,mustacheVariable,mustacheVariableUnescape,mustacheSection,mustachePartial,mustacheMarkerSet,mustacheComment,htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlTag,htmlEndTag,htmlTagName,htmlSpecialChar,htmlLink,htmlBold,htmlUnderline,htmlItalic
 
 let b:current_syntax = "mustache"
 delcommand HtmlHiLink
