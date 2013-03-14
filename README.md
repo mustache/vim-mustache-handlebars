@@ -22,10 +22,12 @@ indent plugin.
     cp -R mustache.vim/ftplugin/* ~/.vim/ftplugin/
     vim mustache.vim/example.mustache
 
-## Thanks
+## Authors
 
-* [Github/5long](/5long) add matchit support
+* [bsutic](https://github.com/bsutic)
+* [juvenn](https://github.com/juvenn)
 
+Thanks [5long](https://github.com/5long) for adding matchit support.
 
-
-* Do you get a good idea? Ping me at [Twitter](http://twitter.com/juvenn).
+You're encouraged to propose ideas or have discussions via github
+issues.
