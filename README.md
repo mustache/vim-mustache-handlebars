@@ -1,9 +1,8 @@
-Vim for Mustache
-================
+Vim for Mustache and Handlebars
+===============================
 
-mustache.vim is a simple plugin for working with mustache templates. It
-has both syntax hilighting and indenting, which just borrows from html
-indent plugin.
+mustache.vim is a simple plugin for working with mustache and handlebars
+templates. It has syntax highlighting and support for matchit.
 
 
 ### Install for pathogen
@@ -17,7 +16,6 @@ indent plugin.
     cd ~/.local/src
     git clone git://github.com/juvenn/mustache.vim.git
     cp -R mustache.vim/syntax/* ~/.vim/syntax/
-    cp -R mustache.vim/indent/* ~/.vim/indent/
     cp -R mustache.vim/ftdetect/* ~/.vim/ftdetect/
     cp -R mustache.vim/ftplugin/* ~/.vim/ftplugin/
     vim mustache.vim/example.mustache

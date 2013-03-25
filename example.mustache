@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> 
-      {{title}} 
+    <title>
+      {{title}}
     </title>
     {{!}}
   </head>
@@ -10,17 +10,17 @@
     <div id="main">
       <h1>Mustache Showdown</h1>
 
-      Basic mustache {{hello}} 
+      Basic mustache {{hello}}
       {{ hello}}, {{hello }} and {{ hello }} are OK
-      
-      <de>{{d d d}} 
+
+      <de>{{d d d}}
 
       {{Everything will be hilighted here}}
 
-      Mustaches hilighted in 
+      Mustaches hilighted in
       <span class="color:{{awesome_color}};font-size:1.2em">attribute value</span>
 
-      {{#repo}} 
+      {{#repo}}
       This is an mustache [enumerable] section
       <li>{{ name }}</li>
       {{/repo}}
@@ -28,17 +28,23 @@
       You can {{{yield}}} here
 
       {{! <> this is a comment TODO:}}
-      
+
       This is a partial   {{> partial1 }}
       Yet another partial {{< partial2 }}, for ctemplate
 
-      {{=<% %>=}}Sorry, cusomized delimiter not handled yet<%={{}}=%> 
+      {{=<% %>=}}Sorry, cusomized delimiter not handled yet<%={{}}=%>
 
-      Thanks goes to {{@defunkt}} 
+      {{#if some_helper}}
+        And here is an example of handlebars if...
+      {{else}}
+        ... with optional else added. Try matchit `%` command over if/else/if.
+      {{/if}}
+
+      Thanks goes to {{@defunkt}}
       Feedback/blames go to {{@juvenn}}
       {{Frustrations}} go to /dev/null
     </div>
-    
+
   </body>
 </html>
 
