@@ -16,5 +16,18 @@ if exists("loaded_matchit") && exists("b:match_words")
   \ . '\%({{\)\@<=/\s*\1\s*}}'
 endif
 
+if exists("g:mustache_abbreviations")
+  inoremap <buffer> {{{ {{{}}}<left><left><left>
+  inoremap <buffer> {{ {{}}<left><left>
+  inoremap <buffer> {{! {{!}}<left><left>
+  inoremap <buffer> {{< {{<}}<left><left>
+  inoremap <buffer> {{> {{>}}<left><left>
+  inoremap <buffer> {{# {{#}}<cr>{{/}}<up><left><left>
+  inoremap <buffer> {{if {{#if }}<cr>{{/if}}<up><left>
+  inoremap <buffer> {{ife {{#if }}<cr>{{else}}<cr>{{/if}}<up><up><left>
+endif
+
 let &cpo = s:cpo_save
 unlet s:cpo_save
+
+" vim: nofoldenable
