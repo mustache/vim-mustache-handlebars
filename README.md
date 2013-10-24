@@ -6,6 +6,7 @@ templates. It has:
  - syntax highlighting,
  - support for matchit and
  - mustache abbreviations support (optional)
+ - support for section movement mappings `[[` and `]]`
 
 
 ### Install for pathogen
@@ -55,10 +56,21 @@ your cursor ends up after typing an abbreviation:
    {{/if}}
    ```
 
+### Section movement mappings
+
+Following the vim convention of jumping from section to section, `[[` and `]]`
+mappings are implemented for easier movement between mustache tags.
+
+ - `]]` jumps to the first following tag
+ - `[[` jumps to the first previous tag
+
+Count with section movements is supported:
+
+ - `2]]` jumps to the second next tag
 
 ## Authors
 
-* [bsutic](https://github.com/bsutic)
+* [bruno-](https://github.com/bruno-)
 * [juvenn](https://github.com/juvenn)
 
 Thanks [5long](https://github.com/5long) for adding matchit support.
