@@ -73,17 +73,19 @@ Count with section movements is supported:
 
 ## Authors
 
-* @nono
-* @bruno-
-* @juvenn
+* [Bruno Michel](github.com/nono)
+* [Bruno Sutic](github.com/bruno-)
+* [Juvenn Woo](github.com/juvenn)
 
-This is combined work from juvenn/mustache.vim and nono/vim-handlebars.
+This is combined work from
+[juvenn/mustache.vim](github.com/juvenn/mustache.vim) and
+[nono/vim-handlebars](github.com/nono/vim-handlebars).
 
-Thanks @5long for adding matchit support.
+Thanks [@5long](github.com/5long) for adding matchit support.
 
 You're encouraged to propose ideas or have discussions via github
 issues.
 
-[mustache]: https://mustache.github.io
+[mustache]: http://mustache.github.io
 [handlebars]: http://handlebarsjs.com
 [pathogen]: https://github.com/tpope/vim-pathogen
