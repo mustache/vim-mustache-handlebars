@@ -70,7 +70,7 @@ Count with section movements is supported:
 
 ## Authors
 
-* [bsutic](https://github.com/bsutic)
+* [bruno-](https://github.com/bruno-)
 * [juvenn](https://github.com/juvenn)
 
 Thanks [5long](https://github.com/5long) for adding matchit support.
