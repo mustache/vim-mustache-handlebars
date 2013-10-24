@@ -71,17 +71,19 @@ Count with section movements is supported:
 
  - `2]]` jumps to the second next tag
 
-## Authors
+## Maintainers
 
-* [Bruno Michel](github.com/nono)
-* [Bruno Sutic](github.com/bruno-)
-* [Juvenn Woo](github.com/juvenn)
+* [Bruno Michel](http://github.com/nono)
+* [Bruno Sutic](http://github.com/bruno-)
+* [Juvenn Woo](http://github.com/juvenn)
 
 This is combined work from
-[juvenn/mustache.vim](github.com/juvenn/mustache.vim) and
-[nono/vim-handlebars](github.com/nono/vim-handlebars).
+[juvenn/mustache.vim](http://github.com/juvenn/mustache.vim) and
+[nono/vim-handlebars](http://github.com/nono/vim-handlebars).
 
-Thanks [@5long](github.com/5long) for adding matchit support.
+----
+
+Thanks [@5long](http://github.com/5long) for adding matchit support.
 
 You're encouraged to propose ideas or have discussions via github
 issues.
