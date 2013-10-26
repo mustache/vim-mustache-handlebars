@@ -41,22 +41,22 @@ endif
 
 syntax match mustacheError '}}}\?'
 syntax match mustacheInsideError '{{[{#<>=!\/]\?'
-syntax region mustacheInside start=/{{/ end=/}}/ keepend containedin=TOP,@htmlMustacheContainer
+syntax region mustacheInside start=/{{/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
 syntax match mustacheOperators '=\|\.\|/' contained containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustacheSection start='{{[#/]'lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheInside,@htmlMustacheContainer
-syntax match mustacheUnescape '{{{\|}}}' contained containedin=mustacheInside,@htmlMustacheContainer extend
-syntax match mustacheConditionals '\([/#]\(if\|unless\)\|else\)' contained containedin=mustacheInside,@htmlMustacheContainer
-syntax match mustacheHelpers '[/#]\(with\|each\)' contained containedin=mustacheSection,@htmlMustacheContainer
+syntax match mustacheUnescape '{{{\|}}}' contained containedin=mustacheInside,@htmlMustacheContainer
+syntax match mustacheConditionals '\([/#]\(if\|unless\)\|else\)' contained containedin=mustacheInside
+syntax match mustacheHelpers '[/#]\(with\|each\)' contained containedin=mustacheSection
 syntax region mustacheComment start=/{{!/rs=s+2 end=/}}/re=e-2 contains=Todo contained containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustacheBlockComment start=/{{!--/rs=s+2 end=/--}}/re=e-2 contains=Todo
 syntax region mustacheQString start=/'/ skip=/\\'/ end=/'/ contained containedin=mustacheInside
 syntax region mustacheDQString start=/"/ skip=/\\"/ end=/"/ contained containedin=mustacheInside
 
 " Clustering
-syntax cluster htmlMustacheContainer add=htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlLink,htmlBold,htmlUnderline,htmlItalic
+syntax cluster htmlMustacheContainer add=htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlLink,htmlBold,htmlUnderline,htmlItalic,htmlValue
 
 
 " Hilighting
