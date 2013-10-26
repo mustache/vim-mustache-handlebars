@@ -41,13 +41,20 @@ endif
 
 syntax match mustacheError '}}}\?'
 syntax match mustacheInsideError '{{[{#<>=!\/]\?'
-syntax region mustacheVariable matchgroup=mustacheMarker start=/{{/ end=/}}/
-syntax region mustacheVariableUnescape matchgroup=mustacheMarker start=/{{{/ end=/}}}/
-syntax region mustacheSection matchgroup=mustacheMarker start='{{[#/]' end=/}}/
-syntax region mustachePartial matchgroup=mustacheMarker start=/{{[<>]/ end=/}}/
-syntax region mustacheMarkerSet matchgroup=mustacheMarker start=/{{=/ end=/=}}/
-syntax region mustacheComment start=/{{!/rs=s+2 end=/}}/re=e-2 contains=Todo
-syntax region mustacheBlockComment start=/{{!--/rs=s+2 end=/--}}/re=e-2 contains=Todo extend
+syntax region mustacheInside start=/{{/ end=/}}/ keepend containedin=TOP,@htmlMustacheContainer
+syntax match mustacheOperators '=\|\.\|/' contained containedin=mustacheInside,@htmlMustacheContainer
+syntax region mustacheSection start='{{[#/]'lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
+syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
+syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
+syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheInside,@htmlMustacheContainer
+syntax match mustacheUnescape '{{{\|}}}' contained containedin=mustacheInside,@htmlMustacheContainer extend
+syntax match mustacheConditionals '\([/#]\(if\|unless\)\|else\)' contained containedin=mustacheInside,@htmlMustacheContainer
+syntax match mustacheHelpers '[/#]\(with\|each\)' contained containedin=mustacheSection,@htmlMustacheContainer
+syntax region mustacheComment start=/{{!/rs=s+2 end=/}}/re=e-2 contains=Todo contained containedin=mustacheInside,@htmlMustacheContainer
+syntax region mustacheBlockComment start=/{{!--/rs=s+2 end=/--}}/re=e-2 contains=Todo
+
+" Clustering
+syntax cluster htmlMustacheContainer add=htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlLink,htmlBold,htmlUnderline,htmlItalic
 
 
 " Hilighting
@@ -61,13 +68,18 @@ HtmlHiLink mustacheMarkerSet Number
 
 HtmlHiLink mustacheComment Comment
 HtmlHiLink mustacheBlockComment Comment
-HtmlHiLink mustacheMarker Special
 HtmlHiLink mustacheError Error
 HtmlHiLink mustacheInsideError Error
 
+HtmlHiLink mustacheHandlebars Special
+HtmlHiLink mustacheUnescape Identifier
+HtmlHiLink mustacheOperators Operator
+HtmlHiLink mustacheConditionals Conditional
+HtmlHiLink mustacheHelpers Repeat
+
 syn region mustacheScriptTemplate start=+<script [^>]*type *=[^>]*text/\(mustache\|x-handlebars-template\)[^>]*>+
 \                       end=+</script>+me=s-1 keepend
-\                       contains=mustacheError,mustacheInsideError,mustacheVariable,mustacheVariableUnescape,mustacheSection,mustachePartial,mustacheMarkerSet,mustacheComment,mustacheBlockComment,htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlTag,htmlEndTag,htmlTagName,htmlSpecialChar,htmlLink,htmlBold,htmlUnderline,htmlItalic
+\                       contains=mustacheInside,@htmlMustacheContainer,htmlTag,htmlEndTag,htmlTagName,htmlSpecialChar
 
 let b:current_syntax = "mustache"
 delcommand HtmlHiLink
