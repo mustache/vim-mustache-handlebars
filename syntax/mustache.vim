@@ -52,6 +52,8 @@ syntax match mustacheConditionals '\([/#]\(if\|unless\)\|else\)' contained conta
 syntax match mustacheHelpers '[/#]\(with\|each\)' contained containedin=mustacheSection,@htmlMustacheContainer
 syntax region mustacheComment start=/{{!/rs=s+2 end=/}}/re=e-2 contains=Todo contained containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustacheBlockComment start=/{{!--/rs=s+2 end=/--}}/re=e-2 contains=Todo
+syntax region mustacheQString start=/'/ skip=/\\'/ end=/'/ contained containedin=mustacheInside
+syntax region mustacheDQString start=/"/ skip=/\\"/ end=/"/ contained containedin=mustacheInside
 
 " Clustering
 syntax cluster htmlMustacheContainer add=htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlLink,htmlBold,htmlUnderline,htmlItalic
@@ -76,6 +78,8 @@ HtmlHiLink mustacheUnescape Identifier
 HtmlHiLink mustacheOperators Operator
 HtmlHiLink mustacheConditionals Conditional
 HtmlHiLink mustacheHelpers Repeat
+HtmlHiLink mustacheQString String
+HtmlHiLink mustacheDQString String
 
 syn region mustacheScriptTemplate start=+<script [^>]*type *=[^>]*text/\(mustache\|x-handlebars-template\)[^>]*>+
 \                       end=+</script>+me=s-1 keepend
