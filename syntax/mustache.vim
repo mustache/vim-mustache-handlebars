@@ -67,7 +67,7 @@ HtmlHiLink mustacheMarker Special
 HtmlHiLink mustacheError Error
 HtmlHiLink mustacheInsideError Error
 
-syn region mustacheScriptTemplate start=+<script [^>]*type *=[^>]*text/mustache[^>]*>+
+syn region mustacheScriptTemplate start=+<script [^>]*type *=[^>]*text/\(mustache\|x-handlebars-template\)[^>]*>+
 \                       end=+</script>+me=s-1 keepend
 \                       contains=mustacheError,mustacheInsideError,mustacheVariable,mustacheVariableUnescape,mustacheSection,mustachePartial,mustacheMarkerSet,mustacheComment,htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlTag,htmlEndTag,htmlTagName,htmlSpecialChar,htmlLink,htmlBold,htmlUnderline,htmlItalic
 
