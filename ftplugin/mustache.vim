@@ -57,6 +57,50 @@ xnoremap <silent> <buffer> [[ :<C-U>call <SID>sectionmovement('{{','b','v',v:cou
 xnoremap <silent> <buffer> ]] :<C-U>call <SID>sectionmovement('{{','' ,'v',v:count1)<CR>
 
 
+" Operator pending mappings
+
+onoremap <silent> <buffer> ie :<C-U>call <SID>wrap_inside()<CR>
+onoremap <silent> <buffer> ae :<C-U>call <SID>wrap_around()<CR>
+xnoremap <silent> <buffer> ie :<C-U>call <SID>wrap_inside()<CR>
+xnoremap <silent> <buffer> ae :<C-U>call <SID>wrap_around()<CR>
+
+function! s:wrap_around()
+  " If the cursor is at the end of the tag element, move back
+  " so that the end tag can be detected.
+  while getline('.')[col('.')-1] ==# '}'
+    execute 'norm h'
+  endwhile
+
+  " Moves to the end of the closing tag
+  let pos = search('}}','We')
+  if pos != 0
+    if getline('.')[col('.')] ==# '}'
+      " Ending tag contains 3 closing brackets '}}}',
+      " move to the last bracket.
+      execute 'norm l'
+    endif
+
+    " select the whole tag
+    execute 'norm v%'
+  endif
+endfunction
+
+function! s:wrap_inside()
+  " If the cursor is at the end of the tag element, move back
+  " so that the end tag can be detected.
+  while getline('.')[col('.')-1] ==# '}'
+    execute 'norm h'
+  endwhile
+
+  " Moves to the end of the closing tag
+  let pos = search('}}','W')
+  if pos != 0
+    " select only inside the tag
+    execute 'norm v%loho'
+  endif
+endfunction
+
+
 let &cpo = s:cpo_save
 unlet s:cpo_save
 
