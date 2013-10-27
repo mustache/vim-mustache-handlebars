@@ -8,6 +8,7 @@ A vim plugin for working with [mustache][mustache] and
  - matchit support
  - mustache abbreviations (optional)
  - section movement mappings `[[` and `]]`
+ - text objects `ie` (inside element) and `ae` (around element)
 
 
 ### Install for pathogen
@@ -70,6 +71,31 @@ mappings are implemented for easier movement between mustache tags.
 Count with section movements is supported:
 
  - `2]]` jumps to the second next tag
+
+### Text objects
+
+Vim has a very powerful concept of "text objects". If you aren't using text objects,
+you can get familiar with it on [this vim help
+link](http://vimdoc.sourceforge.net/htmldoc/motion.html#text-objects). Learning
+text objecs really speeds up the workflow with vim.
+
+In that spirit, this plugin defines 2 text objects:
+ - `ie` a mnemonic for `inside element`, selects all the text inside the
+   mustache tag.
+   For example, when used with `viw` it will visually select the
+   bold text in the following snippets: {{**some_variable**}},
+   {{{**different_variable**}}}.
+ - `ae` a mnemonic for `around element`, selects the whole mustache tag,
+   including the curly braces.
+   Example, `vaw` visually selects the bold text in the following
+   snippets: **{{some_variable}}** or **{{{another_variable}}}**.
+
+Here are other usage examples:
+ - `daw` - deletes the whole mustache tag, including the curly braces
+ - `diw` - deletes **inside* the mustache tag, leaving only curly braces
+ - `yaw` - "yanks" the whole mustache tag - with curly braces
+ - `ciw` - deletes **inside** the mustache tag and goes in insert mode
+
 
 ## Maintainers
 
