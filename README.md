@@ -10,11 +10,13 @@ A vim plugin for working with [mustache][mustache] and
  - section movement mappings `[[` and `]]`
  - text objects `ie` (inside element) and `ae` (around element)
 
+**Note**: for compatibility reason #7, we've renamed the repo name from
+`vim-mode` to `vim-mustache-handlebars`.
 
 ### Install for pathogen
 
     cd ~/.vim/
-    git submodule add git://github.com/mustache/vim-mode.git bundle/mustache
+    git submodule add git://github.com/mustache/vim-mustache-handlebars.git bundle/mustache
     vim bundle/mustache/example.mustache
 
 Get [pathogen][pathogen].
@@ -22,7 +24,7 @@ Get [pathogen][pathogen].
 ### Manually Install
 
     cd ~/.local/src
-    git clone git://github.com/mustache/vim-mode.git mustache.vim
+    git clone git://github.com/mustache/vim-mustache-handlebars.git mustache.vim
     cp -R mustache.vim/syntax/* ~/.vim/syntax/
     cp -R mustache.vim/ftdetect/* ~/.vim/ftdetect/
     cp -R mustache.vim/ftplugin/* ~/.vim/ftplugin/
