@@ -21,6 +21,12 @@ A vim plugin for working with [mustache][mustache] and
 
 Get [pathogen][pathogen].
 
+### Install for vundle
+
+Add `Bundle 'mustache/vim-mustache-handlebars'` to your `.vimrc` and do a `:BundleInstall`.
+
+Get [pathogen][pathogen].
+
 ### Manually Install
 
     cd ~/.local/src
