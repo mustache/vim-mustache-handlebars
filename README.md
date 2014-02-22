@@ -25,8 +25,6 @@ Get [pathogen][pathogen].
 
 Add `Bundle 'mustache/vim-mustache-handlebars'` to your `.vimrc` and do a `:BundleInstall`.
 
-Get [pathogen][pathogen].
-
 ### Manually Install
 
     cd ~/.local/src
