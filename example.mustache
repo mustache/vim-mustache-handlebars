@@ -25,6 +25,11 @@
       <li>{{ name }}</li>
       {{/repo}}
 
+      Inverted sections are supported too
+      {{^repo}}
+        No repos :(
+      {{/repo}}
+
       You can {{{yield}}} here
 
       {{! <> this is a comment TODO:}}
