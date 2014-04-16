@@ -16,7 +16,7 @@ A vim plugin for working with [mustache][mustache] and
 ### Install for pathogen
 
     cd ~/.vim/
-    git submodule add git://github.com/mustache/vim-mustache-handlebars.git bundle/mustache
+    git clone git://github.com/mustache/vim-mustache-handlebars.git bundle/mustache
     vim bundle/mustache/example.mustache
 
 Get [pathogen][pathogen].
