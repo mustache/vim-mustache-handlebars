@@ -10,6 +10,8 @@ A vim plugin for working with [mustache][mustache] and
  - section movement mappings `[[` and `]]`
  - text objects `ie` (inside element) and `ae` (around element)
 
+This plugin contributes to [vim-polyglot](https://github.com/sheerun/vim-polyglot) language pack.
+
 **Note**: for compatibility reason #7, we've renamed the repo name from
 `vim-mode` to `vim-mustache-handlebars`.
 
