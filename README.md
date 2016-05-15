@@ -68,6 +68,12 @@ your cursor ends up after typing an abbreviation:
    {{else}}
    {{/if}}
    ```
+ - `{{ea` produces
+
+   ```
+   {{#each _}}
+   {{/each}}
+   ```
 
 ### Section movement mappings
 
