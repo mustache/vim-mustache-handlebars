@@ -72,15 +72,16 @@ function! GetHandlebarsIndent(...)
     " Force HTML indent to not keep state
     let b:indent.lnum = -1
   endif
-  let lnum = prevnonblank(v:lnum-1)
-  let line = getline(lnum)
+  let plnum = prevnonblank(v:lnum-1)
+  let pline = getline(plnum)
   let cline = getline(v:lnum)
 
   " all indent rules only apply if the block opening/closing
   " tag is on a separate line
 
   " indent after block {{#block
-  if line =~# '\v\s*\{\{\#.*\s*'
+  if pline =~# '\v\{\{\#.*\s*' &&
+        \ pline !~# '{{#\(.\{}\)\s.\{}}}.*{{\/\1}}'
     let ind = ind + sw
   endif
   " unindent after block close {{/block}}
@@ -92,7 +93,7 @@ function! GetHandlebarsIndent(...)
     let ind = ind - sw
   endif
   " indent again after {{else}}
-  if line =~# '\v^\s*\{\{else.*\}\}\s*$'
+  if pline =~# '\v^\s*\{\{else.*\}\}\s*$'
     let ind = ind + sw
   endif
 
