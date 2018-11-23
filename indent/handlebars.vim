@@ -73,26 +73,26 @@ function! GetHandlebarsIndent(...)
     let b:indent.lnum = -1
   endif
   let lnum = prevnonblank(v:lnum-1)
-  let line = getline(lnum)
-  let cline = getline(v:lnum)
+  let prevLine = getline(lnum)
+  let currentLine = getline(v:lnum)
 
   " all indent rules only apply if the block opening/closing
   " tag is on a separate line
 
   " indent after block {{#block
-  if line =~# '\v\s*\{\{\#.*\s*'
+  if prevLine =~# '\v\s*\{\{\#.*\s*'
     let ind = ind + sw
   endif
   " unindent after block close {{/block}}
-  if cline =~# '\v^\s*\{\{\/\S*\}\}\s*'
+  if currentLine =~# '\v^\s*\{\{\/\S*\}\}\s*'
     let ind = ind - sw
   endif
   " unindent {{else}}
-  if cline =~# '\v^\s*\{\{else.*\}\}\s*$'
+  if currentLine =~# '\v^\s*\{\{else.*\}\}\s*$'
     let ind = ind - sw
   endif
   " indent again after {{else}}
-  if line =~# '\v^\s*\{\{else.*\}\}\s*$'
+  if prevLine =~# '\v^\s*\{\{else.*\}\}\s*$'
     let ind = ind + sw
   endif
 
