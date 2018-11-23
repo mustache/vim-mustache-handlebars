@@ -50,7 +50,7 @@ syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheInside,@h
 syntax match mustacheUnescape '{{{\|}}}' contained containedin=mustacheInside,@htmlMustacheContainer
 syntax match mustacheConditionals '\([/#]\(if\|unless\)\|else\)' contained containedin=mustacheInside
 syntax match mustacheHelpers '[/#]\(with\|each\)' contained containedin=mustacheSection
-syntax match mustacheParam /[a-z]\+=/he=e-1 contained containedin=mustacheInside
+syntax match mustacheParam /[a-z@_-]\+=/he=e-1 contained containedin=mustacheInside
 syntax region mustacheComment      start=/{{!/rs=s+2   skip=/{{.\{-}}}/ end=/}}/re=e-2   contains=Todo contained containedin=TOP,mustacheInside,@htmlMustacheContainer
 syntax region mustacheBlockComment start=/{{!--/rs=s+2 skip=/{{.\{-}}}/ end=/--}}/re=e-2 contains=Todo contained extend containedin=TOP,mustacheInside,@htmlMustacheContainer
 syntax region mustacheQString start=/'/ skip=/\\'/ end=/'/ contained containedin=mustacheInside
@@ -67,6 +67,7 @@ HtmlHiLink mustacheVariable Number
 HtmlHiLink mustacheVariableUnescape Number
 HtmlHiLink mustachePartial Number
 HtmlHiLink mustacheMarkerSet Number
+HtmlHiLink mustacheParam htmlArg
 
 HtmlHiLink mustacheComment Comment
 HtmlHiLink mustacheBlockComment Comment
