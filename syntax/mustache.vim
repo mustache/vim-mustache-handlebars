@@ -2,7 +2,7 @@
 " Language:	Mustache, Handlebars
 " Maintainer:	Juvenn Woo <machese@gmail.com>
 " Screenshot:   http://imgur.com/6F408
-" Version:	4
+" Version:	5
 " Last Change:  Nov 23rd 2018
 " Remark:
 "   It lexically hilights embedded mustaches (exclusively) in html file.
@@ -48,8 +48,8 @@ syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained contai
 syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheInside,@htmlMustacheContainer
 syntax match mustacheUnescape '{{{\|}}}' contained containedin=mustacheInside,@htmlMustacheContainer
-syntax match mustacheConditionals '\([/#]if\|unless\|else\)' contained containedin=mustacheInside
-syntax match mustacheHelpers '[/#]\(with\|link\-to\|each\(\-in\)\?\)' contained containedin=mustacheInside
+syntax match mustacheConditionals '\([/#]\?if\|unless\|else\)' contained containedin=mustacheInside
+syntax match mustacheHelpers '[/#]\?\(with\|link\-to\|each\(\-in\)\?\)' contained containedin=mustacheInside
 syntax match mustacheHelpers 'else \(if\|unless\|with\|link\-to\|each\(\-in\)\?\)' contained containedin=mustacheInside
 syntax match mustacheParam /[a-z@_-]\+=/he=e-1 contained containedin=mustacheInside
 syntax region mustacheComment      start=/{{!/rs=s+2   skip=/{{.\{-}}}/ end=/}}/re=e-2   contains=Todo contained containedin=TOP,mustacheInside,@htmlMustacheContainer
