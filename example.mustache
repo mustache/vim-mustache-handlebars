@@ -53,6 +53,14 @@
 
       {{=<% %>=}}Sorry, customized delimiter not handled yet<%={{}}=%>
 
+      {{#each items}}
+        <p class="foo">Bar</p>
+      {{/each}}
+
+      {{#each-in item items}}
+        <p class="foo">Bar</p>
+      {{/each-in}}
+
       {{#if some_helper}}
         And here is an example of handlebars if...
       {{else}}
