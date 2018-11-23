@@ -3,7 +3,7 @@
 " Maintainer:	Juvenn Woo <machese@gmail.com>
 " Screenshot:   http://imgur.com/6F408
 " Version:	2
-" Last Change:  Oct 26th 2013
+" Last Change:  Nov 23rd 2018
 " Remark:
 "   It lexically hilights embedded mustaches (exclusively) in html file.
 "   While it was written for Ruby-based Mustache template system, it should
@@ -43,6 +43,7 @@ syntax match mustacheError '}}}\?'
 syntax match mustacheInsideError '{{[{$#<>=!\/]\?'
 syntax region mustacheInside start=/{{[^!]/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
 syntax match mustacheOperators '=\|\.\|/' contained containedin=mustacheInside,@htmlMustacheContainer
+syntax region mustacheHtmlValue start=/={{[^!][$#^/]\?/rs=s+1,hs=s+1 end=/}}/ oneline keepend contained containedin=htmlTag contains=mustacheInside
 syntax region mustacheSection start='{{[$#^/]'lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
