@@ -48,8 +48,8 @@ syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained contai
 syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=mustacheInside,@htmlMustacheContainer
 syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheInside,@htmlMustacheContainer
 syntax match mustacheUnescape '{{{\|}}}' contained containedin=mustacheInside,@htmlMustacheContainer
-syntax match mustacheConditionals '\([/#]\(if\|unless\)\|else\)' contained containedin=mustacheInside
-syntax match mustacheHelpers '[/#]\(with\|each\)' contained containedin=mustacheSection
+syntax match mustacheConditionals '\([/#]if\|unless\|else\)' contained containedin=mustacheInside
+syntax match mustacheHelpers '[/#]\(with\|each\(\-in\)\?\)' contained containedin=mustacheSection
 syntax match mustacheParam /[a-z@_-]\+=/he=e-1 contained containedin=mustacheInside
 syntax region mustacheComment      start=/{{!/rs=s+2   skip=/{{.\{-}}}/ end=/}}/re=e-2   contains=Todo contained containedin=TOP,mustacheInside,@htmlMustacheContainer
 syntax region mustacheBlockComment start=/{{!--/rs=s+2 skip=/{{.\{-}}}/ end=/--}}/re=e-2 contains=Todo contained extend containedin=TOP,mustacheInside,@htmlMustacheContainer
