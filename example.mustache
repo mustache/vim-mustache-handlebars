@@ -65,12 +65,24 @@
 
       Multiline {{comments}} with
       {{variables}}
-    </div>
 
-    <div class={{function "bare-handlebars go here" content concat("foo" "bar")}} class="foobar">
+      <div>
+        {{#mustacheBlock
+          param="foo"
+          anotherParam="bar"
+        }}
+          {{mustacheBlock
+            param="foo"
+            anotherParam="bar"
+          }}
+        {{/mustacheBlock}}
+      </div>
 
-      <p class="paragraph">Lorem ipsum dolor sit amet</p>
+      <div class={{function "bare-handlebars go here" content concat("foo" "bar")}} class="foobar">
 
+        <p class="paragraph">Lorem ipsum dolor sit amet</p>
+
+      </div>
     </div>
 
   </body>
