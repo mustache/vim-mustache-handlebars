@@ -21,8 +21,8 @@
       <span class="color:{{awesome_color}};font-size:1.2em">attribute value</span>
 
       {{#repo}}
-      This is a mustache [enumerable] section
-      <li>{{ name }}</li>
+        This is a mustache [enumerable] section
+        <li>{{ name }}</li>
       {{/repo}}
 
       Inverted sections are supported too
@@ -63,7 +63,7 @@
 
       {{if true "foobar"}}
 
-      {{#link-to component}}
+      {{link-to component}}
 
       {{#if some_helper}}
         And here is an example of handlebars if...
@@ -84,7 +84,7 @@
         {{#mustacheBlock
           param="foo"
           anotherParam="bar"
-        }}
+          }}
           {{mustacheBlock
             param="foo"
             anotherParam="bar"
@@ -97,6 +97,35 @@
         <p class="paragraph">Lorem ipsum dolor sit amet</p>
 
       </div>
+
+      <!-- Indentation tests -->
+      {{#if true}}
+        {{#block
+          param=foo
+          param2=bar}}
+          Lorem ipsum
+          {{block foo=bar}}
+        {{/block}}
+
+        {{#block}}
+          Lorem ipsum
+        {{/block}}
+
+        {{inline}}
+        Lorem ipsum
+
+        {{#block
+          foo=bar
+          }}
+          Lorem ipsum
+        {{/block}}
+
+        {{inline
+          foo=bar}}
+        Lorem ipsum
+      {{/if}}
+      <!-- end indentation tests -->
+
     </div>
 
   </body>
