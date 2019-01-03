@@ -20,6 +20,10 @@
       Mustaches highlighted in
       <span class="color:{{awesome_color}};font-size:1.2em">attribute value</span>
 
+      {{!-- Should not see unquoted "=", ".", or "/" as a mustacheOperator
+            unless inside mustacheInside or mustacheParam --}}
+      <a href=/index.html>
+
       {{#repo}}
         This is a mustache [enumerable] section
         <li>{{ name }}</li>
