@@ -15,6 +15,14 @@ This plugin contributes to [vim-polyglot](https://github.com/sheerun/vim-polyglo
 **Note**: for compatibility reason #7, we've renamed the repo name from
 `vim-mode` to `vim-mustache-handlebars`.
 
+### Native Vim Package Management
+
+    mkdir -p ~/.vim/pack/mustache/start
+    cd ~/.vim/pack/mustache/start
+    git clone https://github.com/mustache/vim-mustache-handlebars.git
+
+**To learn more about Vim's built-in package manager:** `:help packages`.
+
 ### Install for pathogen
 
     cd ~/.vim/
