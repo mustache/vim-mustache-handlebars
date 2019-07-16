@@ -50,16 +50,15 @@ syntax case ignore
 syntax match mustacheAngleComponentName '<[[:alnum:]]\+'hs=s+1 contained containedin=mustacheAngleComponent,mustacheAngleBrackets
 syntax match mustacheAngleBrackets '<\|/\?>' contained containedin=mustacheAngleComponent,@htmlMustacheContainer
 
-syntax region mustacheHbarsInside start=/{{[^!][$#^/]\?/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
-syntax region mustacheParenInside start=/([^!][$#^/]\?/ end=/)/ keepend containedin=TOP,@htmlMustacheContainer
+syntax region mustacheHbsComponent start=/\((\|{{\)[^!][$#^/]\?/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
 
-syntax cluster mustacheInside add=mustacheHbarsInside,mustacheParenInside,mustacheAngleComponent
+syntax cluster mustacheInside add=mustacheHbsComponent,mustacheAngleComponent
 
 syntax match mustacheOperators '=\|\.\|/^>' contained containedin=@mustacheInside,mustacheParam
 syntax region mustacheHtmlValue start=/={{[^!][$#^/]\?/rs=s+1,hs=s+1 end=/}}/ oneline keepend contained containedin=htmlTag contains=@mustacheInside
 syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained containedin=@mustacheInside,@htmlMustacheContainer
 syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=@mustacheInside,@htmlMustacheContainer
-syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheHbarsInside,@htmlMustacheContainer
+syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheHbsComponent,@htmlMustacheContainer
 syntax match mustacheUnescape '{{{\|}}}' contained containedin=@mustacheInside,@htmlMustacheContainer
 syntax match mustacheConditionals '\([/#]\?if\|unless\|else\)' contained containedin=mustacheInside
 syntax match mustacheHelpers '[/#]\?\(with\|link\-to\|each\(\-in\)\?\)' contained containedin=mustacheInside
