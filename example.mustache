@@ -130,10 +130,19 @@
       {{/if}}
       <!-- end indentation tests -->
 
-      <AngleBracketSyntax
-        @param="foo"
-        @lorem={{ipsum}}
-        />
+			<AngleBraketComponent
+				@mustache={{@bla}}
+				@number=123
+				data-test-id="test"
+				class="my-class" as |test|>
+				Some Text
+				<div>{{test.someValue}}</div>
+				<test.component teste="asdfads"></test.component>
+			</AngleBraketComponent>
+
+			<HelloAngleBrackets @prop={{test}} />
+
+	    <MyIput type="text" oninput={{action (mut fooBar) value="target.value"}} />
 
     </div>
 
