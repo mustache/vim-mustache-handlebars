@@ -41,7 +41,6 @@ endif
 
 syntax match mustacheError '}}}\?'
 syntax match mustacheInsideError '{{[{$#<>=!\/]\?'
-syntax region mustacheInside start=/{{[^!][$#^/]\?/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
 
 " Ember angle bracket syntax syntax starts with a capital letter:
 " https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md
@@ -51,20 +50,25 @@ syntax case ignore
 syntax match mustacheAngleComponentName '<[[:alnum:]]\+'hs=s+1 contained containedin=mustacheAngleComponent,mustacheAngleBrackets
 syntax match mustacheAngleBrackets '<\|/\?>' contained containedin=mustacheAngleComponent,@htmlMustacheContainer
 
-syntax match mustacheOperators '=\|\.\|/^>' contained containedin=mustacheInside,mustacheAngleComponent,mustacheParam
-syntax region mustacheHtmlValue start=/={{[^!][$#^/]\?/rs=s+1,hs=s+1 end=/}}/ oneline keepend contained containedin=htmlTag contains=mustacheInside
-syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained containedin=mustacheInside,mustacheAngleComponent,@htmlMustacheContainer
-syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=mustacheInside,mustacheAngleComponent,@htmlMustacheContainer
-syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheInside,@htmlMustacheContainer
-syntax match mustacheUnescape '{{{\|}}}' contained containedin=mustacheInside,mustacheAngleComponent,@htmlMustacheContainer
+syntax region mustacheHbarsInside start=/{{[^!][$#^/]\?/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
+syntax region mustacheParenInside start=/([^!][$#^/]\?/ end=/)/ keepend containedin=TOP,@htmlMustacheContainer
+
+syntax cluster mustacheInside add=mustacheHbarsInside,mustacheParenInside,mustacheAngleComponent
+
+syntax match mustacheOperators '=\|\.\|/^>' contained containedin=@mustacheInside,mustacheParam
+syntax region mustacheHtmlValue start=/={{[^!][$#^/]\?/rs=s+1,hs=s+1 end=/}}/ oneline keepend contained containedin=htmlTag contains=@mustacheInside
+syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained containedin=@mustacheInside,@htmlMustacheContainer
+syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=@mustacheInside,@htmlMustacheContainer
+syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheHbarsInside,mustacheHbarsConditionals,@htmlMustacheContainer
+syntax match mustacheUnescape '{{{\|}}}' contained containedin=@mustacheInside,@htmlMustacheContainer
 syntax match mustacheConditionals '\([/#]\?if\|unless\|else\)' contained containedin=mustacheInside
 syntax match mustacheHelpers '[/#]\?\(with\|link\-to\|each\(\-in\)\?\)' contained containedin=mustacheInside
 syntax match mustacheHelpers 'else \(if\|unless\|with\|link\-to\|each\(\-in\)\?\)' contained containedin=mustacheInside
-syntax match mustacheParam /[a-z@_-]\+=/he=e-1 contained containedin=mustacheInside,mustacheAngleComponent
-syntax region mustacheComment      start=/{{!/rs=s+2   skip=/{{.\{-}}}/ end=/}}/re=e-2   contains=Todo contained containedin=TOP,mustacheInside,mustacheAngleComponent,@htmlMustacheContainer
-syntax region mustacheBlockComment start=/{{!--/rs=s+2 skip=/{{.\{-}}}/ end=/--}}/re=e-2 contains=Todo contained extend containedin=TOP,mustacheInside,mustacheAngleComponent,@htmlMustacheContainer
-syntax region mustacheQString start=/'/ skip=/\\'/ end=/'/ contained containedin=mustacheInside,mustacheAngleComponent
-syntax region mustacheDQString start=/"/ skip=/\\"/ end=/"/ contained containedin=mustacheInside,mustacheAngleComponent
+syntax match mustacheParam /[a-z@_-]\+=/he=e-1 contained containedin=@mustacheInside
+syntax region mustacheComment      start=/{{!/rs=s+2   skip=/{{.\{-}}}/ end=/}}/re=e-2   contains=Todo contained containedin=TOP,@mustacheInside,@htmlMustacheContainer
+syntax region mustacheBlockComment start=/{{!--/rs=s+2 skip=/{{.\{-}}}/ end=/--}}/re=e-2 contains=Todo contained extend containedin=TOP,@mustacheInside,@htmlMustacheContainer
+syntax region mustacheQString start=/'/ skip=/\\'/ end=/'/ contained containedin=@mustacheInside
+syntax region mustacheDQString start=/"/ skip=/\\"/ end=/"/ contained containedin=@mustacheInside
 
 " Clustering
 syntax cluster htmlMustacheContainer add=htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,htmlLink,htmlBold,htmlUnderline,htmlItalic,htmlValue
