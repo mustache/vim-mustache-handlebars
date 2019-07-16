@@ -59,7 +59,7 @@ syntax match mustacheOperators '=\|\.\|/^>' contained containedin=@mustacheInsid
 syntax region mustacheHtmlValue start=/={{[^!][$#^/]\?/rs=s+1,hs=s+1 end=/}}/ oneline keepend contained containedin=htmlTag contains=@mustacheInside
 syntax region mustachePartial start=/{{[<>]/lc=2 end=/}}/me=e-2 contained containedin=@mustacheInside,@htmlMustacheContainer
 syntax region mustacheMarkerSet start=/{{=/lc=2 end=/=}}/me=e-2 contained containedin=@mustacheInside,@htmlMustacheContainer
-syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheHbarsInside,mustacheHbarsConditionals,@htmlMustacheContainer
+syntax match mustacheHandlebars '{{\|}}' contained containedin=mustacheHbarsInside,@htmlMustacheContainer
 syntax match mustacheUnescape '{{{\|}}}' contained containedin=@mustacheInside,@htmlMustacheContainer
 syntax match mustacheConditionals '\([/#]\?if\|unless\|else\)' contained containedin=mustacheInside
 syntax match mustacheHelpers '[/#]\?\(with\|link\-to\|each\(\-in\)\?\)' contained containedin=mustacheInside
