@@ -3,7 +3,7 @@
 " Maintainer:	Juvenn Woo <machese@gmail.com>
 " Screenshot:   http://imgur.com/6F408
 " Version:	5
-" Last Change:  Nov 23rd 2018
+" Last Change:  Jul 16 2019
 " Remark:
 "   It lexically hilights embedded mustaches (exclusively) in html file.
 "   While it was written for Ruby-based Mustache template system, it should
