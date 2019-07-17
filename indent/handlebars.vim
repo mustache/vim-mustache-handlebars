@@ -104,17 +104,15 @@ function! GetHandlebarsIndent(...)
   endif
 
   " check for a closing }}, indent according to the opening one
-  if prevLine =~# '}}$' && prevLine !~# '^\s*{{'
-    " Is it a block component?
-    let [line, col] = searchpos('{{#', 'Wbn')
+  if prevLine =~# '}}$' && prevLine !~# '^\s*{{' && search('}}$', 'Wb')
+    let [line, col] = searchpairpos('{{', '', '}}', 'Wb')
     if line > 0
-      return (col - 1) + sw
-    endif
-
-    " Is it a single component?
-    let [line, col] = searchpos('{{', 'Wbn')
-    if line > 0
-      return (col - 1)
+      if strpart(getline(line), col - 1, 3) == '{{#'
+        " then it's a block component, indent a shiftwidth more
+        return indent(line) + sw
+      else
+        return indent(line)
+      endif
     endif
   endif
 
