@@ -51,7 +51,7 @@ syntax match mustacheAngleComponentName '</[[:alnum:]]\+'hs=s+2 contained contai
 syntax match mustacheAngleComponentName '<[[:alnum:]]\+'hs=s+1 contained containedin=mustacheAngleBrackets
 syntax match mustacheAngleBrackets '</\?\|/\?>' contained containedin=mustacheAngleComponent
 
-syntax region mustacheHbsComponent start=/\((\|{{\)[^!][$#^/]\?/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
+syntax region mustacheHbsComponent start=/{{[^!][$#^/]\?/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
 
 syntax cluster mustacheInside add=mustacheHbsComponent,mustacheAngleComponent
 
