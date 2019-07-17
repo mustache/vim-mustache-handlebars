@@ -1,7 +1,7 @@
-if exists('g:loaded_mustache_handlebars') && g:loaded_mustache_handlebars
+if exists('b:loaded_mustache_handlebars')
   finish
 endif
-let g:loaded_mustache_handlebars = 1
+let b:loaded_mustache_handlebars = 1
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -20,6 +20,9 @@ if exists("loaded_matchit") && exists("b:match_words")
   \ . ':'
   \ . '\%({{\)\@<=/\s*\1\s*}}'
 endif
+
+" Set template for comment
+setlocal commentstring={{!--\ %s\ --}}
 
 if exists("g:mustache_abbreviations")
   inoremap <buffer> {{{ {{{}}}<left><left><left>

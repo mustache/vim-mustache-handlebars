@@ -20,9 +20,13 @@
       Mustaches highlighted in
       <span class="color:{{awesome_color}};font-size:1.2em">attribute value</span>
 
+      {{!-- Should not see unquoted "=", ".", or "/" as a mustacheOperator
+            unless inside mustacheInside or mustacheParam --}}
+      <a href=/index.html>
+
       {{#repo}}
-      This is a mustache [enumerable] section
-      <li>{{ name }}</li>
+        This is a mustache [enumerable] section
+        <li>{{ name }}</li>
       {{/repo}}
 
       Inverted sections are supported too
@@ -36,6 +40,12 @@
 
       Another {{!-- comment --}}, this one is a block comment.
 
+      HTML elements should be able to follow:
+      {{! comments }}
+      <span class="class">Hello</span>
+      {{!-- and block comments --}}
+      <span class="class">Hello</span>
+
       {{!-- TODO: some remark
       <div>
         Multiline {{comments}} with
@@ -47,8 +57,22 @@
 
       {{=<% %>=}}Sorry, customized delimiter not handled yet<%={{}}=%>
 
+      {{#each items}}
+        <p class="foo">Bar</p>
+      {{/each}}
+
+      {{#each-in item items}}
+        <p class="foo">Bar</p>
+      {{/each-in}}
+
+      {{if true "foobar"}}
+
+      {{link-to component}}
+
       {{#if some_helper}}
         And here is an example of handlebars if...
+      {{else if false}}
+        And some text that won't ever show...
       {{else}}
         ... with optional else added. Try matchit `%` command over if/else/if.
       {{/if}}
@@ -59,6 +83,67 @@
 
       Multiline {{comments}} with
       {{variables}}
+
+      <div>
+        {{#mustacheBlock
+          param="foo"
+          anotherParam="bar"
+          }}
+          {{mustacheBlock
+            param="foo"
+            anotherParam="bar"
+          }}
+        {{/mustacheBlock}}
+      </div>
+
+      <div class={{function "bare-handlebars go here" content concat("foo" "bar")}} class="foobar">
+
+        <p class="paragraph">Lorem ipsum dolor sit amet</p>
+
+      </div>
+
+      <!-- Indentation tests -->
+      {{#if true}}
+        {{#block
+          param=foo
+          param2=bar}}
+          Lorem ipsum
+          {{block foo=bar}}
+        {{/block}}
+
+        {{#block}}
+          Lorem ipsum
+        {{/block}}
+
+        {{inline}}
+        Lorem ipsum
+
+        {{#block
+          foo=bar
+          }}
+          Lorem ipsum
+        {{/block}}
+
+        {{inline
+          foo=bar}}
+        Lorem ipsum
+      {{/if}}
+      <!-- end indentation tests -->
+
+      <AngleBracketComponent
+        @mustache={{@bla}}
+        @number=123
+        data-test-id="test"
+        class="my-class" as |test|>
+        Some Text
+        <div>{{test.someValue}}</div>
+        <test.component teste="asdfads"></test.component>
+      </AngleBraketComponent>
+
+      <HelloAngleBrackets @prop={{test}} />
+
+      <MyInput type="text" oninput={{action (mut fooBar) value="target.value"}} />
+
     </div>
 
   </body>
