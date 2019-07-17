@@ -15,6 +15,7 @@ This plugin contributes to [vim-polyglot](https://github.com/sheerun/vim-polyglo
 **Note**: for compatibility reason #7, we've renamed the repo name from
 `vim-mode` to `vim-mustache-handlebars`.
 
+
 ### Install for pathogen
 
     cd ~/.vim/
@@ -27,6 +28,16 @@ Get [pathogen][pathogen].
 
 Add `Plugin 'mustache/vim-mustache-handlebars'` to your `.vimrc` and do a
 `:PluginInstall`.
+
+### Built-in Vim Package Manager 
+
+> **Heads up!** Only available for Vim 8+
+
+mkdir -p ~/.vim/pack/mustache/start
+cd ~/.vim/pack/mustache/start
+git clone https://github.com/mustache/vim-mustache-handlebars.git
+
+**To learn more about Vim's built-in package manager:** `:help packages`.
 
 ### Manually Install
 
