@@ -47,8 +47,9 @@ syntax match mustacheInsideError '{{[{$#<>=!\/]\?'
 syntax case match
 syntax region mustacheAngleComponent start=/<\/\?[[:upper:]]/ end=/>/ keepend containedin=TOP,@htmlMustacheContainer
 syntax case ignore
-syntax match mustacheAngleComponentName '</[[:alnum:]]\+'hs=s+2 contained containedin=mustacheAngleComponent
-syntax match mustacheAngleComponentName '<[[:alnum:]]\+'hs=s+1 contained containedin=mustacheAngleComponent
+syntax match mustacheAngleComponentName '</[[:alnum:]]\+'hs=s+2 contained containedin=mustacheAngleBrackets
+syntax match mustacheAngleComponentName '<[[:alnum:]]\+'hs=s+1 contained containedin=mustacheAngleBrackets
+syntax match mustacheAngleBrackets '</\?\|/\?>' contained containedin=mustacheAngleComponent
 
 syntax region mustacheHbsComponent start=/{{[^!][$#^/]\?/ end=/}}}\?/ keepend containedin=TOP,@htmlMustacheContainer
 
@@ -89,7 +90,7 @@ HtmlHiLink mustacheError Error
 HtmlHiLink mustacheInsideError Error
 
 HtmlHiLink mustacheHandlebars Special
-HtmlHiLink mustacheAngleComponent htmlTagName
+HtmlHiLink mustacheAngleBrackets htmlTagName
 HtmlHiLink mustacheUnescape Identifier
 HtmlHiLink mustacheOperators Operator
 HtmlHiLink mustacheConditionals Conditional
