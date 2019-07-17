@@ -82,8 +82,45 @@ function! GetHandlebarsIndent(...)
   " all indent rules only apply if the block opening/closing
   " tag is on a separate line
 
+  " " check for a hanging attribute
+  let lastLnumCol = col([lnum, '$']) - 1
+  if synIDattr(synID(lnum, lastLnumCol, 1), "name") =~ '^mustache'
+        \ && prevLine !~# '}}\s*$'
+    let hangingAttributePattern = '{{\#\=\%(\k\|[/-]\)\+\s\+\zs\k\+='
+    let standaloneComponentPattern = '^\s*{{\%(\k\|[/-]\)\+\s*$'
+
+    if prevLine =~ hangingAttributePattern
+      " {{component attribute=value
+      "             other=value}}
+      let [line, col] = searchpos(hangingAttributePattern, 'Wbn', lnum)
+      if line == lnum
+        return col - 1
+      endif
+    elseif prevLine =~ standaloneComponentPattern
+      " {{component
+      "   attribute=value}}
+      return indent(lnum) + sw
+    endif
+  endif
+
+  " check for a closing }}, indent according to the opening one
+  if prevLine =~# '}}$' && prevLine !~# '^\s*{{'
+    " Is it a block component?
+    let [line, col] = searchpos('{{#', 'Wbn')
+    if line > 0
+      return (col - 1) + sw
+    endif
+
+    " Is it a single component?
+    let [line, col] = searchpos('{{', 'Wbn')
+    if line > 0
+      return (col - 1)
+    endif
+  endif
+
   " indent after block {{#block
-  if prevLine =~# '\v\s*\{\{\#.*\s*'
+  if prevLine =~# '\v\s*\{\{\#.*\s*' &&
+        \ prevLine !~# '{{#\(.\{}\)\s.\{}}}.*{{\/\1}}'
     let s:in_block_expr = 1
     let ind = ind + sw
   endif
