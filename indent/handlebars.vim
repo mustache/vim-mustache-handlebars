@@ -104,6 +104,7 @@ function! GetHandlebarsIndent(...)
   endif
 
   " check for a closing }}, indent according to the opening one
+  let saved_pos = getpos('.')
   if prevLine =~# '}}$' && prevLine !~# '^\s*{{' && search('}}$', 'Wb')
     let [line, col] = searchpairpos('{{', '', '}}', 'Wb')
     if line > 0
@@ -113,6 +114,8 @@ function! GetHandlebarsIndent(...)
       else
         return indent(line)
       endif
+    else
+      call setpos('.', saved_pos)
     endif
   endif
 
