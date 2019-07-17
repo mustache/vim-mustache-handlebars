@@ -15,7 +15,6 @@ This plugin contributes to [vim-polyglot](https://github.com/sheerun/vim-polyglo
 **Note**: for compatibility reason #7, we've renamed the repo name from
 `vim-mode` to `vim-mustache-handlebars`.
 
-
 ### Install for pathogen
 
     cd ~/.vim/
