@@ -21,7 +21,7 @@ if exists("loaded_matchit") && exists("b:match_words")
   \ . '\%({{\)\@<=/\s*\1\s*}}'
 endif
 
-" Vim-commentary support
+" Set template for comment
 setlocal commentstring={{!--\ %s\ --}}
 
 if exists("g:mustache_abbreviations")
