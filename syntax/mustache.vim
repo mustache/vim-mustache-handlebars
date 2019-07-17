@@ -45,7 +45,7 @@ syntax match mustacheInsideError '{{[{$#<>=!\/]\?'
 " Ember angle bracket syntax syntax starts with a capital letter:
 " https://github.com/emberjs/rfcs/blob/master/text/0311-angle-bracket-invocation.md
 syntax case match
-syntax region mustacheAngleComponent start=/<[A-Z]/ end=/>/ keepend containedin=TOP,@htmlMustacheContainer
+syntax region mustacheAngleComponent start=/<[[:upper:]]/ end=/>/ keepend containedin=TOP,@htmlMustacheContainer
 syntax case ignore
 syntax match mustacheAngleComponentName '<[[:alnum:]]\+'hs=s+1 contained containedin=mustacheAngleComponent
 syntax match mustacheAngleBrackets '<\|/\?>' contained containedin=mustacheAngleComponentName
