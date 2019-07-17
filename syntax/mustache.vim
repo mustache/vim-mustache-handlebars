@@ -2,7 +2,7 @@
 " Language:	Mustache, Handlebars
 " Maintainer:	Juvenn Woo <machese@gmail.com>
 " Screenshot:   http://imgur.com/6F408
-" Version:	5
+" Version:	6
 " Last Change:  Jul 16 2019
 " Remark:
 "   It lexically hilights embedded mustaches (exclusively) in html file.
