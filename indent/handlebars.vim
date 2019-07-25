@@ -100,9 +100,13 @@ function! GetHandlebarsIndent(...)
     endif
   endif
 
+  let componentClosingPattern = '\v^\s*\{\{\/\S*\}\}\s*'
+
   " check for a closing }}, indent according to the opening one
   let saved_pos = getpos('.')
-  if prevLine =~# '}}$' && prevLine !~# '^\s*{{' && search('}}$', 'Wb')
+  if prevLine =~# '}}$' && prevLine !~# '^\s*{{' &&
+        \ currentLine !~# componentClosingPattern &&
+        \ search('}}$', 'Wb')
     let [line, col] = searchpairpos('{{', '', '}}', 'Wb')
     if line > 0
       if strpart(getline(line), col - 1, 3) =~ '{{[#^]'
@@ -126,7 +130,7 @@ function! GetHandlebarsIndent(...)
     let ind = ind - sw
   endif
   " unindent after block close {{/block}}
-  if currentLine =~# '\v^\s*\{\{\/\S*\}\}\s*'
+  if currentLine =~# componentClosingPattern
     let ind = ind - sw
   endif
   " indent after component block {{a-component
