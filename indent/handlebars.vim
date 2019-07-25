@@ -80,7 +80,7 @@ function! GetHandlebarsIndent(...)
   " tag is on a separate line
 
   " indent after block {{#block
-  if prevLine =~# '\v\s*\{\{\#.*\s*'
+  if prevLine =~# '\v\s*\{\{[#^].*\s*'
     let ind = ind + sw
   endif
   " but not if the block ends on the same line
@@ -105,7 +105,7 @@ function! GetHandlebarsIndent(...)
     let closingLnum = search('}}\s*$', 'Wbc', lnum)
     let [openingLnum, col] = searchpairpos('{{', '', '}}', 'Wb')
     if openingLnum > 0 && closingLnum > 0
-      if strpart(getline(openingLnum), col - 1, 3) != '{{#'
+      if strpart(getline(openingLnum), col - 1, 3) !~ '{{[#^]'
         let ind = ind - sw
       endif
     else
