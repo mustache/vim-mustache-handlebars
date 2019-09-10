@@ -33,6 +33,7 @@ if exists("g:mustache_abbreviations")
   inoremap <buffer> {{# {{#}}<cr>{{/}}<up><left><left>
   inoremap <buffer> {{if {{#if }}<cr>{{/if}}<up><left>
   inoremap <buffer> {{ife {{#if }}<cr>{{else}}<cr>{{/if}}<up><up><left>
+  inoremap <buffer> {{- {{-  -}}<left><left><left><left>
 endif
 
 
