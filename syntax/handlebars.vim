@@ -102,5 +102,5 @@ syn region mustacheScriptTemplate start=+<script [^>]*type *=[^>]*text/\(mustach
 \                       end=+</script>+me=s-1 keepend
 \                       contains=mustacheInside,@htmlMustacheContainer,htmlTag,htmlEndTag,htmlTagName,htmlSpecialChar
 
-let b:current_syntax = "mustache"
+let b:current_syntax = "handlebars"
 delcommand HtmlHiLink
