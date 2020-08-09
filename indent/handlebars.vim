@@ -79,7 +79,7 @@ function! GetHandlebarsIndent(...)
   " all indent rules only apply if the block opening/closing
   " tag is on a separate line
 
-  " " check for a hanging attribute
+  " check for a hanging attribute
   let lastLnumCol = col([lnum, '$']) - 1
   if synIDattr(synID(lnum, lastLnumCol, 1), "name") =~ '^mustache'
         \ && prevLine !~# '}}\s*$'
