@@ -45,6 +45,8 @@ if exists("*GetHandlebarsIndent")
   finish
 endif
 
+let s:componentClosingPattern = '\v^\s*\{\{\/\S*\}\}\s*'
+
 function! GetHandlebarsIndent(...)
   " The value of a single shift-width
   if exists('*shiftwidth')
@@ -100,12 +102,10 @@ function! GetHandlebarsIndent(...)
     endif
   endif
 
-  let componentClosingPattern = '\v^\s*\{\{\/\S*\}\}\s*'
-
   " check for a closing }}, indent according to the opening one
   let saved_pos = getpos('.')
   if prevLine =~# '}}$' && prevLine !~# '^\s*{{' &&
-        \ currentLine !~# componentClosingPattern &&
+        \ currentLine !~# s:componentClosingPattern &&
         \ search('}}$', 'Wb')
     let [line, col] = searchpairpos('{{', '', '}}', 'Wb')
     if line > 0
@@ -130,7 +130,7 @@ function! GetHandlebarsIndent(...)
     let ind = ind - sw
   endif
   " unindent after block close {{/block}}
-  if currentLine =~# componentClosingPattern
+  if currentLine =~# s:componentClosingPattern
     let ind = ind - sw
   endif
   " indent after component block {{a-component
