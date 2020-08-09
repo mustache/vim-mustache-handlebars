@@ -121,8 +121,7 @@ function! GetHandlebarsIndent(...)
   endif
 
   " indent after block: {{#block, {{^block
-  if prevLine =~# '\v\s*\{\{[#^].*\s*' &&
-        \ prevLine !~# '{{[#^]\(.\{}\)\s.\{}}}.*{{\/\1}}'
+  if prevLine =~# '\v\s*\{\{[#^].*\s*'
     let ind = ind + sw
   endif
   " but not if the block ends on the same line
