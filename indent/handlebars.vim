@@ -45,6 +45,8 @@ if exists("*GetHandlebarsIndent")
   finish
 endif
 
+let s:componentClosingPattern = '\v^\s*\{\{\/\S*\}\}\s*'
+
 function! GetHandlebarsIndent(...)
   " The value of a single shift-width
   if exists('*shiftwidth')
@@ -79,16 +81,55 @@ function! GetHandlebarsIndent(...)
   " all indent rules only apply if the block opening/closing
   " tag is on a separate line
 
-  " indent after block {{#block
+  " check for a hanging attribute
+  let lastLnumCol = col([lnum, '$']) - 1
+  if synIDattr(synID(lnum, lastLnumCol, 1), "name") =~ '^mustache'
+        \ && prevLine !~# '}}\s*$'
+    let hangingAttributePattern = '{{[#^]\=\%(\k\|[/-]\)\+\s\+\zs\k\+='
+    let standaloneComponentPattern = '^\s*{{\%(\k\|[/-]\)\+\s*$'
+
+    if prevLine =~ hangingAttributePattern
+      " {{component attribute=value
+      "             other=value}}
+      let [line, col] = searchpos(hangingAttributePattern, 'Wbn', lnum)
+      if line == lnum
+        return col - 1
+      endif
+    elseif prevLine =~ standaloneComponentPattern
+      " {{component
+      "   attribute=value}}
+      return indent(lnum) + sw
+    endif
+  endif
+
+  " check for a closing }}, indent according to the opening one
+  let saved_pos = getpos('.')
+  if prevLine =~# '}}$' && prevLine !~# '^\s*{{' &&
+        \ currentLine !~# s:componentClosingPattern &&
+        \ search('}}$', 'Wb')
+    let [line, col] = searchpairpos('{{', '', '}}', 'Wb')
+    if line > 0
+      if strpart(getline(line), col - 1, 3) =~ '{{[#^]'
+        " then it's a block component, indent a shiftwidth more
+        return indent(line) + sw
+      else
+        return indent(line)
+      endif
+    else
+      call setpos('.', saved_pos)
+    endif
+  endif
+
+  " indent after block: {{#block, {{^block
   if prevLine =~# '\v\s*\{\{[#^].*\s*'
     let ind = ind + sw
   endif
   " but not if the block ends on the same line
-  if prevLine =~# '\v\s*\{\{\#(.+)(\s+|\}\}).*\{\{\/\1'
+  if prevLine =~# '\v\s*\{\{[#^](.+)(\s+|\}\}).*\{\{\/\1'
     let ind = ind - sw
   endif
   " unindent after block close {{/block}}
-  if currentLine =~# '\v^\s*\{\{\/\S*\}\}\s*'
+  if currentLine =~# s:componentClosingPattern
     let ind = ind - sw
   endif
   " indent after component block {{a-component
@@ -105,7 +146,7 @@ function! GetHandlebarsIndent(...)
     let closingLnum = search('}}\s*$', 'Wbc', lnum)
     let [openingLnum, col] = searchpairpos('{{', '', '}}', 'Wb')
     if openingLnum > 0 && closingLnum > 0
-      if strpart(getline(openingLnum), col - 1, 3) !~ '{{[#^]'
+      if strpart(getline(openingLnum), col - 1, 3) !~# '{{[#^]'
         let ind = ind - sw
       endif
     else

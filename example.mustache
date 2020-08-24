@@ -23,6 +23,7 @@
       {{!-- Should not see unquoted "=", ".", or "/" as a mustacheOperator
             unless inside mustacheInside or mustacheParam --}}
       <a href=/index.html>
+      </a>
 
       {{#repo}}
         This is a mustache [enumerable] section
@@ -76,6 +77,10 @@
       {{else}}
         ... with optional else added. Try matchit `%` command over if/else/if.
       {{/if}}
+
+      {{component-with hanging="attributes"
+                       over="several"
+                       lines="."}}
 
       Thanks goes to {{@defunkt}}
       Feedback/blames go to {{@juvenn}}
