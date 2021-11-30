@@ -32,9 +32,9 @@ Add `Plugin 'mustache/vim-mustache-handlebars'` to your `.vimrc` and do a
 
 > **Heads up!** Only available for Vim 8+
 
-mkdir -p ~/.vim/pack/mustache/start
-cd ~/.vim/pack/mustache/start
-git clone https://github.com/mustache/vim-mustache-handlebars.git
+    mkdir -p ~/.vim/pack/mustache/start
+    cd ~/.vim/pack/mustache/start
+    git clone https://github.com/mustache/vim-mustache-handlebars.git
 
 **To learn more about Vim's built-in package manager:** `:help packages`.
 
